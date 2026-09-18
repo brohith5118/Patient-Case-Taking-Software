@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Create Account - Patient Case-Taking Software{% endblock %}
+
+{% block content %}
+<div class="form-card card">
+    <h2>Create Account</h2>
+    <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name"
+                   value="{{ form.get('full_name', '') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"
+                   value="{{ form.get('email', '') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="6">
+            <small>Minimum 6 characters.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
+        </div>
+
+        <div class="form-group">
+            <label>Role</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="role" value="patient"
+                        {% if form.get('role') == 'patient' or not form.get('role') %}checked{% endif %}>
+                    Patient
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="role" value="doctor"
+                        {% if form.get('role') == 'doctor' %}checked{% endif %}>
+                    Doctor
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+    </form>
+
+    <p class="form-footer">
+        Already have an account? <a href="{{ url_for('login') }}">Login</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,303 @@
+/* ---------------------------------------------------------
+   Patient Case-Taking Software - Simple Stylesheet
+   Clean, light, healthcare-style theme. No frameworks used.
+--------------------------------------------------------- */
+
+:root {
+    --blue: #2f6fed;
+    --blue-dark: #1e4fbf;
+    --light-bg: #f5f8fc;
+    --card-bg: #ffffff;
+    --border: #dfe6ee;
+    --text: #263043;
+    --text-light: #5c6b82;
+    --danger: #e0503f;
+    --success: #2e9e5b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* --- Navbar --- */
+.navbar {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+}
+
+.nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+}
+
+.nav-brand {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+.nav-user {
+    margin-left: 1rem;
+    color: var(--text-light);
+}
+
+.nav-logout {
+    color: var(--danger) !important;
+}
+
+/* --- Layout --- */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    padding: 1.5rem 1rem;
+}
+
+/* --- Cards --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.hero {
+    text-align: center;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.info-grid, .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 700px) {
+    .info-grid, .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--blue);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-dark);
+}
+
+.btn-secondary {
+    background-color: #eef2f9;
+    color: var(--blue-dark);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: #e1e9f6;
+}
+
+.btn-danger {
+    background-color: #fbeae7;
+    color: var(--danger);
+    border: 1px solid #f3c9c2;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger);
+    color: #fff;
+}
+
+.btn-small {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* --- Forms --- */
+.form-card {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.55rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.form-group small {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.radio-option {
+    font-weight: normal !important;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+}
+
+.inline-form {
+    display: inline;
+}
+
+/* --- Tables --- */
+.info-table, .records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.info-table th, .info-table td,
+.records-table th, .records-table td {
+    text-align: left;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.info-table th {
+    width: 40%;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.records-table th {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* --- Flash messages --- */
+.flash-container {
+    margin-bottom: 1rem;
+}
+
+.flash {
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.flash-error {
+    background-color: #fbeae7;
+    color: var(--danger);
+    border: 1px solid #f3c9c2;
+}
+
+.flash-success {
+    background-color: #e8f7ee;
+    color: var(--success);
+    border: 1px solid #bfe8cd;
+}
+
+/* --- Error page --- */
+.error-card {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+}

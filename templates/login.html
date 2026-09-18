@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Login - Patient Case-Taking Software{% endblock %}
+
+{% block content %}
+<div class="form-card card">
+    <h2>Login</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Login</button>
+    </form>
+
+    <p class="form-footer">
+        Don't have an account? <a href="{{ url_for('register') }}">Create Account</a>
+    </p>
+</div>
+{% endblock %}

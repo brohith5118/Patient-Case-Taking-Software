@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome, {{ session.get('full_name') }}</h1>
+
+<div class="dashboard-grid">
+    <div class="card">
+        <div class="card-header">
+            <h3>My Basic Information</h3>
+            <a href="{{ url_for('edit_profile') }}" class="btn btn-small btn-secondary">Edit Profile</a>
+        </div>
+
+        {% if profile %}
+        <table class="info-table">
+            <tr><th>Age</th><td>{{ profile.age or "Not set" }}</td></tr>
+            <tr><th>Gender</th><td>{{ profile.gender or "Not set" }}</td></tr>
+            <tr><th>Phone</th><td>{{ profile.phone or "Not set" }}</td></tr>
+            <tr><th>Address</th><td>{{ profile.address or "Not set" }}</td></tr>
+            <tr><th>Blood Group</th><td>{{ profile.blood_group or "Not set" }}</td></tr>
+            <tr><th>Allergies</th><td>{{ profile.allergies or "Not set" }}</td></tr>
+            <tr><th>Medical Conditions</th><td>{{ profile.medical_conditions or "Not set" }}</td></tr>
+        </table>
+        {% else %}
+        <p>No profile information yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Upload Medical Record</h3>
+        </div>
+        <form method="POST" action="{{ url_for('upload_record') }}" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" accept=".pdf,.png,.jpg,.jpeg" required>
+            <button type="submit" class="btn btn-primary">Upload Medical Record</button>
+        </form>
+        <small>Allowed file types: PDF, PNG, JPG, JPEG. Max size 10 MB.</small>
+    </div>
+</div>
+
+<div class="card">
+    <h3>My Uploaded Records</h3>
+
+    {% if records %}
+    <table class="records-table">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Type</th>
+                <th>Upload Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.original_filename }}</td>
+                <td>{{ record.file_type|upper }}</td>
+                <td>{{ record.uploaded_at.split('T')[0] }}</td>
+                <td class="actions-cell">
+                    <a href="{{ url_for('view_record', record_id=record.id) }}"
+                       target="_blank" class="btn btn-small btn-secondary">Open</a>
+                    <form method="POST"
+                          action="{{ url_for('delete_record', record_id=record.id) }}"
+                          class="inline-form"
+                          onsubmit="return confirm('Delete this record? This cannot be undone.');">
+                        <button type="submit" class="btn btn-small btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You have not uploaded any records yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

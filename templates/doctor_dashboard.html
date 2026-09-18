@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome, Dr. {{ session.get('full_name') }}</h1>
+
+<div class="card">
+    <h3>Registered Patients: {{ patient_count }}</h3>
+
+    {% if patients %}
+    <table class="records-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.full_name }}</td>
+                <td>{{ patient.email }}</td>
+                <td>
+                    <a href="{{ url_for('view_patient', patient_id=patient.id) }}"
+                       class="btn btn-small btn-secondary">View Profile</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No patients have registered yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

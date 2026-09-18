@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Home - Patient Case-Taking Software{% endblock %}
+
+{% block content %}
+<div class="hero card">
+    <h1>Patient Case-Taking Software</h1>
+    <p>
+        A simple academic prototype that lets patients securely store their basic
+        medical information and upload medical records (PDF / images), while
+        registered doctors can view patient profiles and their uploaded records.
+    </p>
+
+    {% if session.get('user_id') %}
+        {% if session.get('role') == 'patient' %}
+            <a class="btn btn-primary" href="{{ url_for('patient_dashboard') }}">Go to My Dashboard</a>
+        {% else %}
+            <a class="btn btn-primary" href="{{ url_for('doctor_dashboard') }}">Go to My Dashboard</a>
+        {% endif %}
+    {% else %}
+        <div class="hero-buttons">
+            <a class="btn btn-primary" href="{{ url_for('login') }}">Login</a>
+            <a class="btn btn-secondary" href="{{ url_for('register') }}">Create Account</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="info-grid">
+    <div class="card">
+        <h3>For Patients</h3>
+        <p>Enter your basic medical details and upload/view your own medical records.</p>
+    </div>
+    <div class="card">
+        <h3>For Doctors</h3>
+        <p>View registered patients and open their profile and uploaded medical records.</p>
+    </div>
+</div>
+{% endblock %}
